@@ -90,9 +90,6 @@
       "key": "schema.__root_schema__.defaultValue"
     },
     {
-      "key": "sourceData"
-    },
-    {
       "key": "schema.__root_schema__.borderRadius"
     },
     {
@@ -458,7 +455,7 @@
           "label": "Address",
           "labelTextSize": "0.875rem",
           "originalIdentifier": "address",
-          "position": 1,
+          "position": 3,
           "sourceData": "123 Elm Street, Springfield"
         },
         "client_id": {
@@ -480,7 +477,7 @@
           "label": "Client Id",
           "labelTextSize": "0.875rem",
           "originalIdentifier": "client_id",
-          "position": 5,
+          "position": 6,
           "sourceData": "001"
         },
         "email": {
@@ -502,7 +499,7 @@
           "label": "Email",
           "labelTextSize": "0.875rem",
           "originalIdentifier": "email",
-          "position": 6,
+          "position": 5,
           "sourceData": "john.doe@example.com"
         },
         "first_name": {
@@ -524,7 +521,7 @@
           "label": "First Name",
           "labelTextSize": "0.875rem",
           "originalIdentifier": "first_name",
-          "position": 4,
+          "position": 1,
           "sourceData": "John"
         },
         "last_name": {
@@ -546,7 +543,7 @@
           "label": "Last Name",
           "labelTextSize": "0.875rem",
           "originalIdentifier": "last_name",
-          "position": 3,
+          "position": 2,
           "sourceData": "Doe"
         },
         "pets": {
@@ -1458,7 +1455,7 @@
           "label": "Phone",
           "labelTextSize": "0.875rem",
           "originalIdentifier": "phone",
-          "position": 2,
+          "position": 4,
           "sourceData": "123-456-7890"
         }
       },
@@ -1528,15 +1525,7 @@
   },
   "scrollContents": true,
   "showReset": true,
-  "sourceData": {
-    "address": "",
-    "client_id": "",
-    "email": "",
-    "first_name": "",
-    "last_name": "",
-    "pets": [],
-    "phone": ""
-  },
+  "sourceData": "{\n  \"address\": \"\",\n  \"phone\": \"\",\n\t\"first_name\": \"\",\n  \"last_name\": \"\",\n  \"client_id\": \"\",\n  \"email\": \"\"\n}",
   "submitButtonLabel": "Submit",
   "submitButtonStyles": {
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
