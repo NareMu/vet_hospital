@@ -465,11 +465,11 @@
           "isDisabled": false,
           "isRequired": false,
           "isSpellCheck": false,
-          "isVisible": false,
+          "isVisible": true,
           "label": "Address",
           "labelTextSize": "0.875rem",
           "originalIdentifier": "address",
-          "position": 1,
+          "position": 3,
           "sourceData": "101 Pine Street, Ogdenville"
         },
         "client_id": {
@@ -491,7 +491,7 @@
           "label": "Client Id",
           "labelTextSize": "0.875rem",
           "originalIdentifier": "client_id",
-          "position": 5,
+          "position": 6,
           "sourceData": "004"
         },
         "email": {
@@ -509,11 +509,11 @@
           "isDisabled": false,
           "isRequired": false,
           "isSpellCheck": false,
-          "isVisible": false,
+          "isVisible": true,
           "label": "Email",
           "labelTextSize": "0.875rem",
           "originalIdentifier": "email",
-          "position": 6,
+          "position": 5,
           "sourceData": "emily.williams@example.com"
         },
         "first_name": {
@@ -531,11 +531,11 @@
           "isDisabled": false,
           "isRequired": false,
           "isSpellCheck": false,
-          "isVisible": false,
+          "isVisible": true,
           "label": "First Name",
           "labelTextSize": "0.875rem",
           "originalIdentifier": "first_name",
-          "position": 4,
+          "position": 1,
           "sourceData": "Emily"
         },
         "last_name": {
@@ -553,11 +553,11 @@
           "isDisabled": false,
           "isRequired": false,
           "isSpellCheck": false,
-          "isVisible": false,
+          "isVisible": true,
           "label": "Last Name",
           "labelTextSize": "0.875rem",
           "originalIdentifier": "last_name",
-          "position": 3,
+          "position": 2,
           "sourceData": "Williams"
         },
         "pets": {
@@ -1467,11 +1467,11 @@
           "isDisabled": false,
           "isRequired": false,
           "isSpellCheck": false,
-          "isVisible": false,
+          "isVisible": true,
           "label": "Phone",
           "labelTextSize": "0.875rem",
           "originalIdentifier": "phone",
-          "position": 2,
+          "position": 4,
           "sourceData": "321-654-9870"
         }
       },
