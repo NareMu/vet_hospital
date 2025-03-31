@@ -1,0 +1,67 @@
+{
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 24,
+  "boxShadow": "none",
+  "defaultOptionValue": "",
+  "dynamicBindingPathList": [
+    {
+      "key": "accentColor"
+    },
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicHeight": "FIXED",
+  "dynamicPropertyPathList": [
+    {
+      "key": "sourceData"
+    },
+    {
+      "key": "onOptionChange"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onOptionChange"
+    }
+  ],
+  "isDisabled": false,
+  "isFilterable": true,
+  "isLoading": false,
+  "isRequired": false,
+  "isVisible": true,
+  "key": "wvivetb32w",
+  "labelAlignment": "left",
+  "labelPosition": "Top",
+  "labelText": "select the query",
+  "labelTextSize": "0.875rem",
+  "labelWidth": 5,
+  "leftColumn": 14,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "mobileBottomRow": 22,
+  "mobileLeftColumn": 27,
+  "mobileRightColumn": 47,
+  "mobileTopRow": 15,
+  "needsErrorInfo": false,
+  "onOptionChange": "{{\n\n  table_results.setData([]);\n\n  if (!dropdown_query_selector.selectedOptionValue) {\n  panel_query_params.setVisibility(false);\n  } else {\n    // Show relevant parameters for selected query\n    QueryHandler.showParams();\n  }\n  \n  // Update description\n  text_query_description.setText(\n    QueryDescriptions.getDescription(dropdown_query_selector.selectedOptionValue)\n  );\n}}",
+  "optionLabel": "label",
+  "optionValue": "value",
+  "parentColumnSpace": 17.9375,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "placeholderText": "Select option",
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 48,
+  "serverSideFiltering": false,
+  "sourceData": "[\n  {\"label\": \"1. Low Stock Medications\", \"value\": \"low_stock\"},\n  {\"label\": \"2. Top Staff by Appointments\", \"value\": \"top_staff\"},\n  {\"label\": \"3. Busiest Day\", \"value\": \"busiest_day\"},\n  {\"label\": \"4. Top Clients with Unpaid Bills\", \"value\": \"unpaid_bills\"},\n  {\"label\": \"5. Staff Revenue Report\", \"value\": \"staff_revenue\"},\n  {\"label\": \"6. Diagnoses Frequency\", \"value\": \"diagnoses\"},\n  {\"label\": \"7. Monthly Medical Records\", \"value\": \"monthly_records\"},\n  {\"label\": \"8. Overweight Pets\", \"value\": \"overweight_pets\"},\n  {\"label\": \"9. Top Staff by Average Billing\", \"value\": \"staff_billing\"},\n  {\"label\": \"10. Clients by Breed\", \"value\": \"clients_by_breed\"},\n  {\"label\": \"11.Prescriptions by pet\", \"value\": \"pres_by_pet\"},\n  {\"label\": \"12. Prescriptions by Category\", \"value\": \"rx_by_category\"}\n]\n\n",
+  "topRow": 17,
+  "type": "SELECT_WIDGET",
+  "version": 1,
+  "widgetId": "4t06jsgklx",
+  "widgetName": "dropdown_query_selector"
+}

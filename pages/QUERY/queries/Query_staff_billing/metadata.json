@@ -1,0 +1,111 @@
+{
+  "gitSyncId": "67dd1afa8f16fa2ec6c6d057_ee75e0c6-d0c1-4468-9b0f-d6204f6604a7",
+  "id": "QUERY_Query_staff_billing",
+  "pluginId": "mongo-plugin",
+  "pluginType": "DB",
+  "unpublishedAction": {
+    "actionConfiguration": {
+      "encodeParamsToggle": true,
+      "formData": {
+        "aggregate": {
+          "arrayPipelines": {
+            "data": ""
+          },
+          "limit": {
+            "data": "10"
+          }
+        },
+        "body": {
+          "data": "{\n  \"aggregate\": \"CREW\",\n  \"pipeline\": [\n    { \"$unwind\": \"$appointments\" },\n    { \n      \"$lookup\": {\n        \"from\": \"CLIENT\",\n        \"localField\": \"appointments.pet_id\",\n        \"foreignField\": \"pets.pet_id\",\n        \"as\": \"client_data\"\n      }\n    },\n    { \"$unwind\": \"$client_data\" },\n    { \"$unwind\": \"$client_data.pets\" },\n    { \"$unwind\": \"$client_data.pets.medical_record\" },\n    { \n      \"$match\": {\n        \"$expr\": { \n          \"$and\": [\n            { \"$eq\": [\"$appointments.pet_id\", \"$client_data.pets.pet_id\"] },\n            { \"$ifNull\": [\"$client_data.pets.medical_record.billing.total\", false] }\n          ]\n        }\n      }\n    },\n    { \n      \"$group\": {\n        \"_id\": \"$crew_id\",\n        \"full_name\": { \"$first\": { \"$concat\": [\"$first_name\", \" \", \"$last_name\"] } },\n        \"total_billing\": { \"$sum\": \"$client_data.pets.medical_record.billing.total\" },\n        \"appointment_count\": { \"$sum\": 1 }\n      }\n    },\n    { \n      \"$project\": {\n        \"_id\": 0,\n        \"crew_id\": \"$_id\",\n        \"full_name\": 1,\n        \"average_billing\": { \n          \"$divide\": [\"$total_billing\", \"$appointment_count\"] \n        },\n        \"total_appointments\": \"$appointment_count\",\n        \"total_revenue\": \"$total_billing\"\n      }\n    },\n    { \"$sort\": { \"average_billing\": -1 } },\n    { \"$limit\": {{input_limit.value || 5}} }\n  ],\n  \"cursor\": {}\n}"
+        },
+        "collection": {
+          "data": ""
+        },
+        "command": {
+          "data": "RAW"
+        },
+        "count": {
+          "query": {
+            "data": ""
+          }
+        },
+        "delete": {
+          "limit": {
+            "data": "SINGLE"
+          },
+          "query": {
+            "data": ""
+          }
+        },
+        "distinct": {
+          "key": {
+            "data": ""
+          },
+          "query": {
+            "data": ""
+          }
+        },
+        "find": {
+          "limit": {
+            "data": ""
+          },
+          "projection": {
+            "data": ""
+          },
+          "query": {
+            "data": "{\n  \"aggregate\": \"CREW\",\n  \"pipeline\": [\n    { \"$unwind\": \"$appointments\" },\n    { \n      \"$lookup\": {\n        \"from\": \"CLIENT\",\n        \"localField\": \"appointments.pet_id\",\n        \"foreignField\": \"pets.pet_id\",\n        \"as\": \"client_data\"\n      }\n    },\n    { \"$unwind\": \"$client_data\" },\n    { \"$unwind\": \"$client_data.pets\" },\n    { \"$unwind\": \"$client_data.pets.medical_record\" },\n    { \n      \"$match\": {\n        \"$expr\": { \"$eq\": [\"$appointments.pet_id\", \"$client_data.pets.pet_id\"] }\n      }\n    },\n    { \n      \"$group\": {\n        \"_id\": \"$crew_id\",\n        \"full_name\": { \"$first\": { \"$concat\": [\"$first_name\", \" \", \"$last_name\"] } },\n        \"total_billing\": { \"$sum\": \"$client_data.pets.medical_record.billing.total\" },\n        \"appointment_count\": { \"$sum\": 1 }\n      }\n    },\n    { \n      \"$project\": {\n        \"full_name\": 1,\n        \"average_billing\": { \"$divide\": [\"$total_billing\", \"$appointment_count\"] }\n      }\n    },\n    { \"$sort\": { \"average_billing\": -1 } },\n    { \"$limit\": 5 }\n  ],\n  \"cursor\": {}\n}\n"
+          },
+          "skip": {
+            "data": ""
+          },
+          "sort": {
+            "data": ""
+          }
+        },
+        "insert": {
+          "documents": {
+            "data": ""
+          }
+        },
+        "misc": {
+          "formToNativeQuery": {
+            "data": "{\n  \"find\": \"\",\n  \"filter\": {\n  \"aggregate\": \"CREW\",\n  \"pipeline\": [\n    { \"$unwind\": \"$appointments\" },\n    { \n      \"$lookup\": {\n        \"from\": \"CLIENT\",\n        \"localField\": \"appointments.pet_id\",\n        \"foreignField\": \"pets.pet_id\",\n        \"as\": \"client_data\"\n      }\n    },\n    { \"$unwind\": \"$client_data\" },\n    { \"$unwind\": \"$client_data.pets\" },\n    { \"$unwind\": \"$client_data.pets.medical_record\" },\n    { \n      \"$match\": {\n        \"$expr\": { \"$eq\": [\"$appointments.pet_id\", \"$client_data.pets.pet_id\"] }\n      }\n    },\n    { \n      \"$group\": {\n        \"_id\": \"$crew_id\",\n        \"full_name\": { \"$first\": { \"$concat\": [\"$first_name\", \" \", \"$last_name\"] } },\n        \"total_billing\": { \"$sum\": \"$client_data.pets.medical_record.billing.total\" },\n        \"appointment_count\": { \"$sum\": 1 }\n      }\n    },\n    { \n      \"$project\": {\n        \"full_name\": 1,\n        \"average_billing\": { \"$divide\": [\"$total_billing\", \"$appointment_count\"] }\n      }\n    },\n    { \"$sort\": { \"average_billing\": -1 } },\n    { \"$limit\": 5 }\n  ],\n  \"cursor\": {}\n}\n,\n  \"limit\": 10,\n  \"batchSize\": 10\n}\n",
+            "status": "SUCCESS"
+          }
+        },
+        "smartSubstitution": {
+          "data": true
+        },
+        "updateMany": {
+          "limit": {
+            "data": "SINGLE"
+          },
+          "query": {
+            "data": ""
+          },
+          "update": {
+            "data": ""
+          }
+        }
+      },
+      "paginationType": "NONE",
+      "timeoutInMillisecond": 10000
+    },
+    "confirmBeforeExecute": false,
+    "datasource": {
+      "id": "G3_DBMongoDB",
+      "isAutoGenerated": false,
+      "name": "G3_DBMongoDB",
+      "pluginId": "mongo-plugin"
+    },
+    "dynamicBindingPathList": [
+      {
+        "key": "formData.body.data"
+      }
+    ],
+    "executeOnLoad": false,
+    "name": "Query_staff_billing",
+    "pageId": "QUERY",
+    "userSetOnLoad": false
+  }
+}

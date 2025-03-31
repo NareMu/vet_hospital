@@ -1,0 +1,107 @@
+{
+  "gitSyncId": "67dd1afa8f16fa2ec6c6d057_7d9e38fd-7a99-4626-a070-c445c76003d4",
+  "id": "QUERY_Query_rx_by_category",
+  "pluginId": "mongo-plugin",
+  "pluginType": "DB",
+  "unpublishedAction": {
+    "actionConfiguration": {
+      "encodeParamsToggle": true,
+      "formData": {
+        "aggregate": {
+          "arrayPipelines": {
+            "data": ""
+          },
+          "limit": {
+            "data": "10"
+          }
+        },
+        "body": {
+          "data": "{\n  \"aggregate\": \"CLIENT\",\n  \"pipeline\": [\n    { \"$unwind\": \"$pets\" },\n    { \"$unwind\": \"$pets.medical_record\" },\n    { \n      \"$match\": {\n        \"pets.medical_record.treatment\": { \n          \"$regex\": \"Anti\",\n          \"$options\": \"i\"\n        }\n      }\n    },\n    {\n      \"$lookup\": {\n        \"from\": \"BREED\",\n        \"localField\": \"pets.breed_id\",\n        \"foreignField\": \"breed_id\",\n        \"as\": \"breed_info\"\n      }\n    },\n    { \"$unwind\": \"$breed_info\" },\n    {\n      \"$lookup\": {\n        \"from\": \"CREW\",\n        \"localField\": \"pets.medical_record.crew_id\",\n        \"foreignField\": \"crew_id\",\n        \"as\": \"crew_info\"\n      }\n    },\n    { \"$unwind\": \"$crew_info\" },\n    { \n      \"$project\": { \n        \"_id\": 0,\n        \"client_id\": 1,\n        \"client_name\": { \"$concat\": [\"$first_name\", \" \", \"$last_name\"] },\n        \"phone\": 1,\n        \"email\": 1,\n        \"pet_name\": \"$pets.name\",\n        \"pet_id\": \"$pets.pet_id\",\n        \"breed_name\": \"$breed_info.breed_name\",\n        \"visit_date\": \"$pets.medical_record.visit_date\",\n        \"treatment\": \"$pets.medical_record.treatment\",\n        \"diagnosis\": \"$pets.medical_record.diagnosis\",\n        \"staff_name\": { \"$concat\": [\"$crew_info.first_name\", \" \", \"$crew_info.last_name\"] },\n        \"staff_position\": \"$crew_info.position\",\n        \"notes\": \"$pets.medical_record.notes\",\n        \"prescription\": \"$pets.medical_record.prescription\",\n        \"billing_status\": \"$pets.medical_record.billing.payment_status\",\n        \"billing_total\": \"$pets.medical_record.billing.total\"\n      }\n    },\n    { \"$sort\": { \"visit_date\": -1 } }\n  ],\n  \"cursor\": {}\n}"
+        },
+        "collection": {
+          "data": ""
+        },
+        "command": {
+          "data": "RAW"
+        },
+        "count": {
+          "query": {
+            "data": ""
+          }
+        },
+        "delete": {
+          "limit": {
+            "data": "SINGLE"
+          },
+          "query": {
+            "data": ""
+          }
+        },
+        "distinct": {
+          "key": {
+            "data": ""
+          },
+          "query": {
+            "data": ""
+          }
+        },
+        "find": {
+          "limit": {
+            "data": ""
+          },
+          "projection": {
+            "data": ""
+          },
+          "query": {
+            "data": "{\n  \"aggregate\": \"CLIENT\",\n  \"pipeline\": [\n    { \"$unwind\": \"$pets\" },\n    { \"$unwind\": \"$pets.medical_record\" },\n    { \n      \"$match\": {\n        \"pets.medical_record.treatment\": { \n          \"$regex\": \"Anti\",\n          \"$options\": \"i\"\n        }\n      }\n    },\n    {\n      \"$lookup\": {\n        \"from\": \"BREED\",\n        \"localField\": \"pets.breed_id\",\n        \"foreignField\": \"breed_id\",\n        \"as\": \"breed_info\"\n      }\n    },\n    { \"$unwind\": \"$breed_info\" },\n    {\n      \"$lookup\": {\n        \"from\": \"CREW\",\n        \"localField\": \"pets.medical_record.crew_id\",\n        \"foreignField\": \"crew_id\",\n        \"as\": \"crew_info\"\n      }\n    },\n    { \"$unwind\": \"$crew_info\" },\n    { \n      \"$project\": { \n        \"_id\": 0,\n        \"client_id\": 1,\n        \"client_name\": { \"$concat\": [\"$first_name\", \" \", \"$last_name\"] },\n        \"phone\": 1,\n        \"email\": 1,\n        \"pet_name\": \"$pets.name\",\n        \"pet_id\": \"$pets.pet_id\",\n        \"breed_name\": \"$breed_info.breed_name\",\n        \"visit_date\": \"$pets.medical_record.visit_date\",\n        \"treatment\": \"$pets.medical_record.treatment\",\n        \"diagnosis\": \"$pets.medical_record.diagnosis\",\n        \"staff_name\": { \"$concat\": [\"$crew_info.first_name\", \" \", \"$crew_info.last_name\"] },\n        \"staff_position\": \"$crew_info.position\",\n        \"notes\": \"$pets.medical_record.notes\",\n        \"prescription\": \"$pets.medical_record.prescription\",\n        \"billing_status\": \"$pets.medical_record.billing.payment_status\",\n        \"billing_total\": \"$pets.medical_record.billing.total\"\n      }\n    },\n    { \"$sort\": { \"visit_date\": -1 } }\n  ],\n  \"cursor\": {}\n}"
+          },
+          "skip": {
+            "data": ""
+          },
+          "sort": {
+            "data": ""
+          }
+        },
+        "insert": {
+          "documents": {
+            "data": ""
+          }
+        },
+        "misc": {
+          "formToNativeQuery": {
+            "data": "{\n  \"find\": \"\",\n  \"filter\": {\n  \"aggregate\": \"CLIENT\",\n  \"pipeline\": [\n    { \"$unwind\": \"$pets\" },\n    { \"$unwind\": \"$pets.medical_record\" },\n    { \n      \"$match\": {\n        \"pets.medical_record.treatment\": { \n          \"$regex\": \"Anti\",\n          \"$options\": \"i\"\n        }\n      }\n    },\n    {\n      \"$lookup\": {\n        \"from\": \"BREED\",\n        \"localField\": \"pets.breed_id\",\n        \"foreignField\": \"breed_id\",\n        \"as\": \"breed_info\"\n      }\n    },\n    { \"$unwind\": \"$breed_info\" },\n    {\n      \"$lookup\": {\n        \"from\": \"CREW\",\n        \"localField\": \"pets.medical_record.crew_id\",\n        \"foreignField\": \"crew_id\",\n        \"as\": \"crew_info\"\n      }\n    },\n    { \"$unwind\": \"$crew_info\" },\n    { \n      \"$project\": { \n        \"_id\": 0,\n        \"client_id\": 1,\n        \"client_name\": { \"$concat\": [\"$first_name\", \" \", \"$last_name\"] },\n        \"phone\": 1,\n        \"email\": 1,\n        \"pet_name\": \"$pets.name\",\n        \"pet_id\": \"$pets.pet_id\",\n        \"breed_name\": \"$breed_info.breed_name\",\n        \"visit_date\": \"$pets.medical_record.visit_date\",\n        \"treatment\": \"$pets.medical_record.treatment\",\n        \"diagnosis\": \"$pets.medical_record.diagnosis\",\n        \"staff_name\": { \"$concat\": [\"$crew_info.first_name\", \" \", \"$crew_info.last_name\"] },\n        \"staff_position\": \"$crew_info.position\",\n        \"notes\": \"$pets.medical_record.notes\",\n        \"prescription\": \"$pets.medical_record.prescription\",\n        \"billing_status\": \"$pets.medical_record.billing.payment_status\",\n        \"billing_total\": \"$pets.medical_record.billing.total\"\n      }\n    },\n    { \"$sort\": { \"visit_date\": -1 } }\n  ],\n  \"cursor\": {}\n},\n  \"limit\": 10,\n  \"batchSize\": 10\n}\n",
+            "status": "SUCCESS"
+          }
+        },
+        "smartSubstitution": {
+          "data": true
+        },
+        "updateMany": {
+          "limit": {
+            "data": "SINGLE"
+          },
+          "query": {
+            "data": ""
+          },
+          "update": {
+            "data": ""
+          }
+        }
+      },
+      "paginationType": "NONE",
+      "timeoutInMillisecond": 10000
+    },
+    "confirmBeforeExecute": false,
+    "datasource": {
+      "id": "G3_DBMongoDB",
+      "isAutoGenerated": false,
+      "name": "G3_DBMongoDB",
+      "pluginId": "mongo-plugin"
+    },
+    "dynamicBindingPathList": [],
+    "executeOnLoad": false,
+    "name": "Query_rx_by_category",
+    "pageId": "QUERY",
+    "userSetOnLoad": false
+  }
+}

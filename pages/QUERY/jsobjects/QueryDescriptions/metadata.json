@@ -1,0 +1,11 @@
+{
+  "gitSyncId": "67dd1afa8f16fa2ec6c6d057_4b30fb67-aaff-4d99-bc64-3f09446482cc",
+  "id": "QUERY_QueryDescriptions",
+  "unpublishedCollection": {
+    "name": "QueryDescriptions",
+    "pageId": "QUERY",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": []
+  }
+}

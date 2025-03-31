@@ -1,0 +1,107 @@
+{
+  "gitSyncId": "67dd1afa8f16fa2ec6c6d057_e0feff1c-e172-4d09-91a9-1263dba0cf59",
+  "id": "QUERY_Query_overweight_pets",
+  "pluginId": "mongo-plugin",
+  "pluginType": "DB",
+  "unpublishedAction": {
+    "actionConfiguration": {
+      "encodeParamsToggle": true,
+      "formData": {
+        "aggregate": {
+          "arrayPipelines": {
+            "data": ""
+          },
+          "limit": {
+            "data": "10"
+          }
+        },
+        "body": {
+          "data": "{\n\n  \"aggregate\": \"CLIENT\",\n  \"pipeline\": [\n    { \"$unwind\": \"$pets\" },\n    { \n      \"$group\": {\n        \"_id\": \"$pets.breed_id\",\n        \"avgWeight\": { \"$avg\": \"$pets.weight\" }\n      }\n    },\n    { \n      \"$lookup\": {\n        \"from\": \"CLIENT\",\n        \"localField\": \"_id\",\n        \"foreignField\": \"pets.breed_id\",\n        \"as\": \"clients\"\n      }\n    },\n    { \"$unwind\": \"$clients\" },\n    { \"$unwind\": \"$clients.pets\" },\n    { \n      \"$match\": { \n        \"$expr\": { \"$eq\": [\"$clients.pets.breed_id\", \"$_id\"] } \n      }\n    },\n    { \n      \"$match\": { \n        \"$expr\": { \"$gte\": [\"$clients.pets.weight\", \"$avgWeight\"] } \n      }\n    },\n    { \n      \"$lookup\": { \n        \"from\": \"BREED\",\n        \"localField\": \"_id\",\n        \"foreignField\": \"breed_id\",\n        \"as\": \"breed_info\"\n      }\n    },\n    { \"$unwind\": \"$breed_info\" },\n    { \n      \"$project\": {\n        \"_id\": 0,\n        \"pet_id\": \"$clients.pets.pet_id\",\n        \"name\": \"$clients.pets.pet_name\",\n        \"breed_name\": \"$breed_info.breed_name\",\n        \"weight\": \"$clients.pets.weight\",\n        \"avg_weight\": \"$avgWeight\"\n      }\n    }\n  ],\n  \"cursor\": {}\n}\n\n"
+        },
+        "collection": {
+          "data": ""
+        },
+        "command": {
+          "data": "RAW"
+        },
+        "count": {
+          "query": {
+            "data": ""
+          }
+        },
+        "delete": {
+          "limit": {
+            "data": "SINGLE"
+          },
+          "query": {
+            "data": ""
+          }
+        },
+        "distinct": {
+          "key": {
+            "data": ""
+          },
+          "query": {
+            "data": ""
+          }
+        },
+        "find": {
+          "limit": {
+            "data": ""
+          },
+          "projection": {
+            "data": ""
+          },
+          "query": {
+            "data": "{\n  \"aggregate\": \"CLIENT\",\n  \"pipeline\": [\n    { \"$unwind\": \"$pets\" },\n    { \n      \"$group\": {\n        \"_id\": \"$pets.breed_id\",\n        \"avgWeight\": { \"$avg\": \"$pets.weight\" }\n      }\n    },\n    { \n      \"$lookup\": {\n        \"from\": \"CLIENT\",\n        \"localField\": \"_id\",\n        \"foreignField\": \"pets.breed_id\",\n        \"as\": \"clients\"\n      }\n    },\n    { \"$unwind\": \"$clients\" },\n    { \"$unwind\": \"$clients.pets\" },\n    { \n      \"$match\": { \n        \"$expr\": { \"$eq\": [\"$clients.pets.breed_id\", \"$_id\"] } \n      }\n    },\n    { \n      \"$match\": { \n        \"$expr\": { \"$gte\": [\"$clients.pets.weight\", \"$avgWeight\"] } \n      }\n    },\n    { \n      \"$lookup\": { \n        \"from\": \"BREED\",\n        \"localField\": \"_id\",\n        \"foreignField\": \"breed_id\",\n        \"as\": \"breed_info\"\n      }\n    },\n    { \"$unwind\": \"$breed_info\" },\n    { \n      \"$project\": {\n        \"_id\": 0,\n        \"pet_id\": \"$clients.pets.pet_id\",\n        \"name\": \"$clients.pets.pet_name\",\n        \"breed_name\": \"$breed_info.breed_name\",\n        \"weight\": \"$clients.pets.weight\",\n        \"avg_weight\": \"$avgWeight\"\n      }\n    }\n  ],\n  \"cursor\": {}\n}\n"
+          },
+          "skip": {
+            "data": ""
+          },
+          "sort": {
+            "data": ""
+          }
+        },
+        "insert": {
+          "documents": {
+            "data": ""
+          }
+        },
+        "misc": {
+          "formToNativeQuery": {
+            "data": "{\n  \"find\": \"\",\n  \"filter\": {\n  \"aggregate\": \"CLIENT\",\n  \"pipeline\": [\n    { \"$unwind\": \"$pets\" },\n    { \n      \"$group\": {\n        \"_id\": \"$pets.breed_id\",\n        \"avgWeight\": { \"$avg\": \"$pets.weight\" }\n      }\n    },\n    { \n      \"$lookup\": {\n        \"from\": \"CLIENT\",\n        \"localField\": \"_id\",\n        \"foreignField\": \"pets.breed_id\",\n        \"as\": \"clients\"\n      }\n    },\n    { \"$unwind\": \"$clients\" },\n    { \"$unwind\": \"$clients.pets\" },\n    { \n      \"$match\": { \n        \"$expr\": { \"$eq\": [\"$clients.pets.breed_id\", \"$_id\"] } \n      }\n    },\n    { \n      \"$match\": { \n        \"$expr\": { \"$gte\": [\"$clients.pets.weight\", \"$avgWeight\"] } \n      }\n    },\n    { \n      \"$lookup\": { \n        \"from\": \"BREED\",\n        \"localField\": \"_id\",\n        \"foreignField\": \"breed_id\",\n        \"as\": \"breed_info\"\n      }\n    },\n    { \"$unwind\": \"$breed_info\" },\n    { \n      \"$project\": {\n        \"_id\": 0,\n        \"pet_id\": \"$clients.pets.pet_id\",\n        \"name\": \"$clients.pets.pet_name\",\n        \"breed_name\": \"$breed_info.breed_name\",\n        \"weight\": \"$clients.pets.weight\",\n        \"avg_weight\": \"$avgWeight\"\n      }\n    }\n  ],\n  \"cursor\": {}\n}\n,\n  \"limit\": 10,\n  \"batchSize\": 10\n}\n",
+            "status": "SUCCESS"
+          }
+        },
+        "smartSubstitution": {
+          "data": true
+        },
+        "updateMany": {
+          "limit": {
+            "data": "SINGLE"
+          },
+          "query": {
+            "data": ""
+          },
+          "update": {
+            "data": ""
+          }
+        }
+      },
+      "paginationType": "NONE",
+      "timeoutInMillisecond": 10000
+    },
+    "confirmBeforeExecute": false,
+    "datasource": {
+      "id": "G3_DBMongoDB",
+      "isAutoGenerated": false,
+      "name": "G3_DBMongoDB",
+      "pluginId": "mongo-plugin"
+    },
+    "dynamicBindingPathList": [],
+    "executeOnLoad": false,
+    "name": "Query_overweight_pets",
+    "pageId": "QUERY",
+    "userSetOnLoad": false
+  }
+}
