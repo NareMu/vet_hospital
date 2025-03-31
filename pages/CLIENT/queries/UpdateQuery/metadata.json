@@ -22,7 +22,7 @@
         },
         "command": {
           "componentData": "UPDATE",
-          "data": "UPDATE",
+          "data": "RAW",
           "viewType": "component"
         },
         "count": {
@@ -107,6 +107,7 @@
       "name": "G3_DBMongoDB",
       "pluginId": "mongo-plugin"
     },
+    "dynamicBindingPathList": [],
     "executeOnLoad": false,
     "name": "UpdateQuery",
     "pageId": "CLIENT",

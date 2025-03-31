@@ -8,6 +8,9 @@
       "encodeParamsToggle": true,
       "formData": {
         "aggregate": {
+          "arrayPipelines": {
+            "data": ""
+          },
           "limit": {
             "data": "10"
           }
@@ -16,11 +19,55 @@
           "data": "CLIENT"
         },
         "command": {
-          "data": "UPDATE"
+          "data": "INSERT"
+        },
+        "count": {
+          "query": {
+            "data": ""
+          }
         },
         "delete": {
           "limit": {
             "data": "SINGLE"
+          },
+          "query": {
+            "data": ""
+          }
+        },
+        "distinct": {
+          "key": {
+            "data": ""
+          },
+          "query": {
+            "data": ""
+          }
+        },
+        "find": {
+          "limit": {
+            "data": ""
+          },
+          "projection": {
+            "data": ""
+          },
+          "query": {
+            "data": ""
+          },
+          "skip": {
+            "data": ""
+          },
+          "sort": {
+            "data": ""
+          }
+        },
+        "insert": {
+          "documents": {
+            "data": ""
+          }
+        },
+        "misc": {
+          "formToNativeQuery": {
+            "data": "{\n  \"insert\": \"CLIENT\",\n  \"documents\": []\n}\n",
+            "status": "SUCCESS"
           }
         },
         "smartSubstitution": {

@@ -1391,7 +1391,7 @@
           "isCustomField": false,
           "isDisabled": false,
           "isRequired": false,
-          "isVisible": true,
+          "isVisible": false,
           "label": "Pets",
           "labelTextSize": "0.875rem",
           "originalIdentifier": "pets",
