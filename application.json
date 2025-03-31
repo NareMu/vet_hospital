@@ -36,6 +36,10 @@
     {
       "id": "CLIENT",
       "isDefault": true
+    },
+    {
+      "id": "CLIENT2",
+      "isDefault": false
     }
   ],
   "unpublishedAppLayout": {
