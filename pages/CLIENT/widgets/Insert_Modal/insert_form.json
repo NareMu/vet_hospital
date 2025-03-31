@@ -312,9 +312,6 @@
       "key": "schema.__root_schema__.children.pets.children.__array_item__.cellBorderRadius"
     },
     {
-      "key": "schema.__root_schema__.children.pets.defaultValue"
-    },
-    {
       "key": "schema.__root_schema__.children.pets.borderRadius"
     },
     {
@@ -324,16 +321,10 @@
       "key": "schema.__root_schema__.children.pets.cellBorderRadius"
     },
     {
-      "key": "schema.__root_schema__.children.address.defaultValue"
-    },
-    {
       "key": "schema.__root_schema__.children.address.borderRadius"
     },
     {
       "key": "schema.__root_schema__.children.address.accentColor"
-    },
-    {
-      "key": "schema.__root_schema__.children.phone.defaultValue"
     },
     {
       "key": "schema.__root_schema__.children.phone.borderRadius"
@@ -342,16 +333,10 @@
       "key": "schema.__root_schema__.children.phone.accentColor"
     },
     {
-      "key": "schema.__root_schema__.children.last_name.defaultValue"
-    },
-    {
       "key": "schema.__root_schema__.children.last_name.borderRadius"
     },
     {
       "key": "schema.__root_schema__.children.last_name.accentColor"
-    },
-    {
-      "key": "schema.__root_schema__.children.first_name.defaultValue"
     },
     {
       "key": "schema.__root_schema__.children.first_name.borderRadius"
@@ -360,16 +345,10 @@
       "key": "schema.__root_schema__.children.first_name.accentColor"
     },
     {
-      "key": "schema.__root_schema__.children.client_id.defaultValue"
-    },
-    {
       "key": "schema.__root_schema__.children.client_id.borderRadius"
     },
     {
       "key": "schema.__root_schema__.children.client_id.accentColor"
-    },
-    {
-      "key": "schema.__root_schema__.children.email.defaultValue"
     },
     {
       "key": "schema.__root_schema__.children.email.borderRadius"
@@ -415,7 +394,7 @@
   "leftColumn": 0,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
-  "onSubmit": "{{Insert_CLIENT1.run(() => {\n            showAlert(\"undefined\");\n            \n          }, () => {\n            showAlert(\"Unable to create!\");\n          })}}",
+  "onSubmit": "{{InsertQuery.run(\n\t() => FindQuery.run(\n\t\t() => closeModal('Insert_Modal')), \n\t(error) => showAlert(`Error while inserting resource!\\n${error}`,'error'))\n}}",
   "parentColumnSpace": 16.3125,
   "parentId": "9rhv3ioohq",
   "parentRowSpace": 10,
@@ -443,13 +422,13 @@
           "boxShadow": "none",
           "children": {},
           "dataType": "string",
-          "defaultValue": "{{((sourceData, formData, fieldState) => (sourceData.address))(insert_form.sourceData, insert_form.formData, insert_form.fieldState)}}",
+          "defaultValue": "",
           "fieldType": "Text Input",
           "iconAlign": "left",
           "identifier": "address",
           "isCustomField": false,
           "isDisabled": false,
-          "isRequired": false,
+          "isRequired": true,
           "isSpellCheck": false,
           "isVisible": true,
           "label": "Address",
@@ -465,13 +444,13 @@
           "boxShadow": "none",
           "children": {},
           "dataType": "string",
-          "defaultValue": "{{((sourceData, formData, fieldState) => (sourceData.client_id))(insert_form.sourceData, insert_form.formData, insert_form.fieldState)}}",
+          "defaultValue": "",
           "fieldType": "Text Input",
           "iconAlign": "left",
           "identifier": "client_id",
           "isCustomField": false,
           "isDisabled": false,
-          "isRequired": false,
+          "isRequired": true,
           "isSpellCheck": false,
           "isVisible": true,
           "label": "Client Id",
@@ -487,13 +466,13 @@
           "boxShadow": "none",
           "children": {},
           "dataType": "string",
-          "defaultValue": "{{((sourceData, formData, fieldState) => (sourceData.email))(insert_form.sourceData, insert_form.formData, insert_form.fieldState)}}",
+          "defaultValue": "",
           "fieldType": "Email Input",
           "iconAlign": "left",
           "identifier": "email",
           "isCustomField": false,
           "isDisabled": false,
-          "isRequired": false,
+          "isRequired": true,
           "isSpellCheck": false,
           "isVisible": true,
           "label": "Email",
@@ -509,13 +488,13 @@
           "boxShadow": "none",
           "children": {},
           "dataType": "string",
-          "defaultValue": "{{((sourceData, formData, fieldState) => (sourceData.first_name))(insert_form.sourceData, insert_form.formData, insert_form.fieldState)}}",
+          "defaultValue": "",
           "fieldType": "Text Input",
           "iconAlign": "left",
           "identifier": "first_name",
           "isCustomField": false,
           "isDisabled": false,
-          "isRequired": false,
+          "isRequired": true,
           "isSpellCheck": false,
           "isVisible": true,
           "label": "First Name",
@@ -531,13 +510,13 @@
           "boxShadow": "none",
           "children": {},
           "dataType": "string",
-          "defaultValue": "{{((sourceData, formData, fieldState) => (sourceData.last_name))(insert_form.sourceData, insert_form.formData, insert_form.fieldState)}}",
+          "defaultValue": "",
           "fieldType": "Text Input",
           "iconAlign": "left",
           "identifier": "last_name",
           "isCustomField": false,
           "isDisabled": false,
-          "isRequired": false,
+          "isRequired": true,
           "isSpellCheck": false,
           "isVisible": true,
           "label": "Last Name",
@@ -1381,7 +1360,7 @@
             }
           },
           "dataType": "array",
-          "defaultValue": "{{((sourceData, formData, fieldState) => (sourceData.pets))(insert_form.sourceData, insert_form.formData, insert_form.fieldState)}}",
+          "defaultValue": "[]",
           "fieldType": "Array",
           "identifier": "pets",
           "isCollapsible": true,
@@ -1443,13 +1422,13 @@
           "boxShadow": "none",
           "children": {},
           "dataType": "string",
-          "defaultValue": "{{((sourceData, formData, fieldState) => (sourceData.phone))(insert_form.sourceData, insert_form.formData, insert_form.fieldState)}}",
+          "defaultValue": "",
           "fieldType": "Text Input",
           "iconAlign": "left",
           "identifier": "phone",
           "isCustomField": false,
           "isDisabled": false,
-          "isRequired": false,
+          "isRequired": true,
           "isSpellCheck": false,
           "isVisible": true,
           "label": "Phone",
@@ -1525,7 +1504,7 @@
   },
   "scrollContents": true,
   "showReset": true,
-  "sourceData": "{\n  \"address\": \"\",\n  \"phone\": \"\",\n\t\"first_name\": \"\",\n  \"last_name\": \"\",\n  \"client_id\": \"\",\n  \"email\": \"\"\n}",
+  "sourceData": "",
   "submitButtonLabel": "Submit",
   "submitButtonStyles": {
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
