@@ -1549,7 +1549,7 @@
     "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
     "buttonVariant": "PRIMARY"
   },
-  "title": "Update Row _id {{data_table.selectedRow._id}}",
+  "title": "Update Client               _id {{data_table.selectedRow.client_id}}",
   "topRow": 0,
   "topRowBeforeCollapse": 0,
   "type": "JSON_FORM_WIDGET",
