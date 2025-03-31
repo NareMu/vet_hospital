@@ -11,11 +11,11 @@
       "colorStyle": "theme",
       "logoAssetId": "",
       "logoConfiguration": "logoOnly",
-      "navStyle": "stacked",
+      "navStyle": "inline",
       "orientation": "top",
       "position": "static",
       "showNavbar": true,
-      "showSignIn": true
+      "showSignIn": false
     },
     "themeSetting": {
       "appMaxWidth": "LARGE",
@@ -49,11 +49,11 @@
       "colorStyle": "theme",
       "logoAssetId": "",
       "logoConfiguration": "logoOnly",
-      "navStyle": "stacked",
+      "navStyle": "inline",
       "orientation": "top",
       "position": "static",
       "showNavbar": true,
-      "showSignIn": true
+      "showSignIn": false
     },
     "themeSetting": {
       "appMaxWidth": "LARGE",
