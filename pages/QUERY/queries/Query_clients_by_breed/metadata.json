@@ -16,7 +16,7 @@
           }
         },
         "body": {
-          "data": "{\n  \"aggregate\": \"CLIENT\",\n  \"pipeline\": [\n   {\"$match\": { \"pets.breed_id\": {{dropdown_breed.selectedOptionValue}}}},\n\t\t{\"$unwind\": \"$pets\"},\n\t\t{\"$group\": {\"_id\": { \"client_id\": \"$client_id\", \"breed_id\": \"$pets.breed_id\"}}},\n\t\t{\"$project\": {\n\t\t\t\"_id\": 0,\n\t\t\t\"client_id\": \"$_id.client_id\",\n\t\t\t\"breed_id\": \"$_id.breed_id\"\n\t\t\t}\n\t\t},\n\t\t{\"$sort\": { \"client_id\": 1}}\n  ],\n  \"cursor\": {}\n}"
+          "data": "{\n  \"aggregate\": \"CLIENT\",\n  \"pipeline\": [\n    { \"$match\": { \"pets.breed_id\": \"{{dropdown_breed.selectedOptionValue}}\" } },\n    { \"$unwind\": \"$pets\" },\n    { \"$match\": { \"pets.breed_id\": \"{{dropdown_breed.selectedOptionValue}}\" } },\n    {\n      \"$group\": {\n        \"_id\": {\n          \"client_id\": \"$client_id\",\n          \"breed_id\": \"$pets.breed_id\"\n        },\n        \"first_name\": { \"$first\": \"$first_name\" },\n        \"last_name\": { \"$first\": \"$last_name\" }\n      }\n    },\n    {\n      \"$project\": {\n        \"_id\": 0,\n        \"client_id\": \"$_id.client_id\",\n        \"full_name\": { \"$concat\": [\"$first_name\", \" \", \"$last_name\"] },\n        \"breed_id\": \"$_id.breed_id\"\n      }\n    },\n    { \"$sort\": { \"client_id\": 1 } }\n  ],\n  \"cursor\": {}\n}"
         },
         "collection": {
           "data": ""
