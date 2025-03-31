@@ -15,6 +15,9 @@
             "data": "10"
           }
         },
+        "body": {
+          "data": "{\n  \"update\": \"CLIENT\",\n  \"updates\": [{\n    \"q\": { _id: ObjectId('{{data_table.selectedRow._id}}') },\n    \"u\": {\n  $set:{{update_form.formData}}\n},\n    \"multi\": false\n}]\n}\n"
+        },
         "collection": {
           "componentData": "CLIENT",
           "data": "CLIENT",
@@ -107,7 +110,11 @@
       "name": "G3_DBMongoDB",
       "pluginId": "mongo-plugin"
     },
-    "dynamicBindingPathList": [],
+    "dynamicBindingPathList": [
+      {
+        "key": "formData.body.data"
+      }
+    ],
     "executeOnLoad": false,
     "name": "UpdateQuery",
     "pageId": "CLIENT",
